@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>150th Anniversary | Prince of Wales' College, Moratuwa</title>
+    <style>
+        /* --- Cambrians Theme (Purple, Gold & Maroon Palette) --- */
+        :root {
+            --cambria-purple: #4A154B;   /* Royal Purple */
+            --cambria-gold: #FFD700;     /* Vibrant Gold */
+            --cambria-gold-light: #FFF099;
+            --cambria-maroon: #800000;   /* Deep Maroon */
+            --dark-bg: #120817;          /* Purple Tinted Dark Background */
+            --card-bg: #1E1026;          /* Dark Card Background */
+            --text-light: #F9F9FB;
+            --text-muted: #BBA8C6;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--cambria-gold);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #fff;
+        }
+
+        /* --- School Tricolor Accent Bar --- */
+        .flag-stripe-bar {
+            height: 6px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--cambria-purple) 33.3%, var(--cambria-gold) 33.3%, var(--cambria-gold) 66.6%, var(--cambria-maroon) 66.6%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 6px;
+            width: 100%;
+            background: rgba(18, 8, 23, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--cambria-gold);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: var(--cambria-maroon);
+            border: 2px solid var(--cambria-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--cambria-gold);
+            font-size: 0.8rem;
+        }
+
+        .brand-text h1 {
+            font-size: 1.2rem;
+            color: var(--cambria-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .brand-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Hero Section & Countdown --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 20px 60px;
+            background: linear-gradient(180deg, rgba(74,21,75,0.8) 0%, rgba(18,8,23,0.95) 100%),
+                        radial-gradient(circle at center, rgba(128,0,0,0.4) 0%, rgba(18,8,23,1) 80%);
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            color: var(--cambria-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .motto-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .motto {
+            background: rgba(128, 0, 0, 0.6);
+            border: 1px solid var(--cambria-gold);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: var(--cambria-gold-light);
+            font-size: 0.9rem;
+        }
+
+        /* Countdown Timer */
+        .countdown-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--cambria-gold);
+            margin-bottom: 15px;
+        }
+
+        .timer-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .timer-box {
+            background: var(--card-bg);
+            border: 2px solid var(--cambria-maroon);
+            outline: 1px solid var(--cambria-gold);
+            padding: 15px 25px;
+            border-radius: 10px;
+            min-width: 100px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        .timer-box .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--cambria-gold);
+        }
+
+        .timer-box .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* --- Sections Core --- */
+        section {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--cambria-gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cambria-purple), var(--cambria-gold), var(--cambria-maroon));
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        /* --- History Section --- */
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .history-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border-top: 4px solid var(--cambria-purple);
+            border-bottom: 4px solid var(--cambria-maroon);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .history-card h3 {
+            color: var(--cambria-gold);
+            margin-bottom: 15px;
+        }
+
+        /* --- Winnings Section --- */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cambria-gold);
+        }
+
+        .badge {
+            background: var(--cambria-maroon);
+            color: var(--cambria-gold);
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-weight: bold;
+            border: 1px solid var(--cambria-gold);
+        }
+
+        .achievement-card h3 {
+            color: var(--cambria-gold-light);
+            margin-bottom: 10px;
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 2px solid var(--cambria-purple);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cambria-purple), var(--cambria-maroon));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cambria-gold);
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .gallery-item iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(18, 8, 23, 0.85);
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--cambria-gold);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #0A040D;
+            border-top: 2px solid var(--cambria-gold);
+            padding: 40px 20px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .timer-box { padding: 10px 15px; min-width: 70px; }
+            .timer-box .number { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Flag Stripe Bar -->
+    <div class="flag-stripe-bar"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-logo-placeholder">PWC</div>
+                <div class="brand-text">
+                    <h1>Prince of Wales' College</h1>
+                    <p>Moratuwa | 150 Years of Excellence</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#history">History</a></li>
+                    <li><a href="#achievements">Winnings</a></li>
+                    <li><a href="#gallery">Media</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero" id="hero">
+        <h2 class="hero-title">150th Anniversary Jubilee</h2>
+        <p class="hero-subtitle">1876 – 2026: Honoring 150 Years of Glory, Honor, and Leadership</p>
+
+        <div class="motto-container">
+            <div class="motto">ICH DIEN (I Serve)</div>
+            <div class="motto">NIHIL PER SALTUM (Not at a leap)</div>
+        </div>
+
+        <div class="countdown-container">
+            <div class="countdown-title">Countdown to Jubilee Celebrations</div>
+            <div class="timer-container">
+                <div class="timer-box">
+                    <div class="number" id="days">00</div>
+                    <div class="label">Days</div>
+                </div>
+                <div class="timer-box">
+                    <div class="number" id="hours">00</div>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="timer-box">
+                    <div class="number" id="minutes">00</div>
+                    <div class="label">Minutes</div>
+                </div>
+                <div class="timer-box">
+                    <div class="number" id="seconds">00</div>
+                    <div class="label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Section -->
+    <section id="history">
+        <h2 class="section-title">Our Legacy & History</h2>
+        <p class="section-desc">Founded on September 14, 1876, by the visionary philanthropist Sir Charles Henry de Soysa.</p>
+        
+        <div class="history-grid">
+            <div class="history-card">
+                <h3>1876: The Founding</h3>
+                <p>Prince of Wales' College was founded by Sir Charles Henry de Soysa in Moratuwa. Named after H.R.H. the Prince of Wales, the college was built to provide world-class education and character building.</p>
+            </div>
+            <div class="history-card">
+                <h3>150 Years of Tradition</h3>
+                <p>Over 1.5 centuries, the college has produced eminent leaders, statesmen, sports icons, artists, and scholars who have shaped the history of Sri Lanka.</p>
+            </div>
+            <div class="history-card">
+                <h3>Battle of the Golds</h3>
+                <p>The iconic annual cricket encounter with St. Sebastian's College, Moratuwa—known as the "Battle of the Golds"—remains one of Sri Lanka's oldest and richest school traditions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Winnings & Achievements Section -->
+    <section id="achievements">
+        <h2 class="section-title">Nowadays Winnings</h2>
+        <p class="section-desc">Celebrating recent victories across sports, academics, and co-curricular achievements.</p>
+
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <span class="badge">Sports</span>
+                <h3>Cricket Excellence</h3>
+                <p>Outstanding performances in All-Island Under-19 and Under-15 tournaments, producing national team talent.</p>
+            </div>
+            <div class="achievement-card">
+                <span class="badge">Academics</span>
+                <h3>G.C.E. A/L Victories</h3>
+                <p>Top national ranks in Physical Science, Commerce, and Arts streams with record university admissions.</p>
+            </div>
+            <div class="achievement-card">
+                <span class="badge">Co-Curricular</span>
+                <h3>ICT & Innovation</h3>
+                <p>Top honors at national robotics events, ICT fairs, and island-wide debating championships.</p>
+            </div>
+            <div class="achievement-card">
+                <span class="badge">Aesthetics</span>
+                <h3>Western & Eastern Bands</h3>
+                <p>Award-winning musical performances and championships in national aesthetics competitions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery & Media Section -->
+    <section id="gallery">
+        <h2 class="section-title">Photos & Videos</h2>
+        <p class="section-desc">Glimpses of life at Cambrians' land and 150th Jubilee events.</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Main School Building & Gates</div>
+                <div class="gallery-caption">College Main Building</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Battle of the Golds</div>
+                <div class="gallery-caption">Cricket Rivalry Action</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">150th Anniversary Preparations</div>
+                <div class="gallery-caption">Jubilee Event</div>
+            </div>
+            <div class="gallery-item">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Cambrian Video" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Prince of Wales' College, Moratuwa. All Rights Reserved.</p>
+        <p style="color: var(--cambria-gold);">150th Anniversary Jubilee Celebrations (1876 – 2026)</p>
+    </footer>
+
+    <!-- Countdown Script -->
+    <script>
+        const targetDate = new Date("September 14, 2026 00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+                document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+            } else {
+                document.querySelector(".countdown-container").innerHTML = "<h3 style='color: var(--cambria-gold); font-size: 2rem;'>Happy 150th Anniversary!</h3>";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
